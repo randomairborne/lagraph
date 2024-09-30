@@ -1,28 +1,15 @@
 use std::{
     collections::{hash_map::Entry, HashMap, HashSet},
     fmt::{Debug, Display, Formatter},
-    fs::OpenOptions,
-    io::{BufRead, BufReader, BufWriter, Write},
 };
 
 use petgraph::{dot::Dot, prelude::NodeIndex, Graph};
 
-fn main() {
-    let file = OpenOptions::new().read(true).open("thoughts.txt").unwrap();
-    let dotfile = OpenOptions::new()
-        .create(true)
-        .write(true)
-        .truncate(true)
-        .open("thoughts.dot")
-        .unwrap();
-
-    let file = BufReader::new(file);
-    let mut dotfile = BufWriter::new(dotfile);
-
+#[wasm_bindgen::prelude::wasm_bindgen]
+pub fn dotfile(input: String) -> String {
     let mut items: HashMap<String, HashSet<String>> = HashMap::new();
 
-    for line in file.lines() {
-        let line = line.unwrap();
+    for line in input.lines() {
         let (name, value) = line.split_once(':').unwrap();
         let name = name.trim().to_string();
         let value: HashSet<String> = value
@@ -69,7 +56,7 @@ fn main() {
             thoughts.add_edge(*key, *connection, Undisplayable);
         }
     }
-    writeln!(dotfile, "{}", Dot::new(&thoughts)).unwrap();
+    Dot::new(&thoughts).to_string()
 }
 
 #[derive(Debug)]
