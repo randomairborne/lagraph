@@ -1,4 +1,4 @@
-name: Godot CI
+name: Web build CI
 on:
   - push
   - workflow_dispatch
