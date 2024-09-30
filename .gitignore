@@ -1,0 +1,7 @@
+/target
+thoughts.dot
+thoughts.txt
+
+.DS_Store
+/.idea/
+/.vscode/
