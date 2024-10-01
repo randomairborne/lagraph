@@ -15,7 +15,5 @@ function render() {
     });
 }
 
-df.addEventListener("change", render);
-df.addEventListener("paste", render);
-df.addEventListener("keypress", render);
+df.addEventListener("input", render);
 render();
