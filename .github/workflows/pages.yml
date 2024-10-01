@@ -22,12 +22,12 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Build
-        run: wasm-pack build --release --out-dir site/rustlib/
+        run: npm run build
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dist
 
   deploy-web:
     runs-on: ubuntu-latest

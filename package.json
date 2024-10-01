@@ -1,13 +1,22 @@
 {
-  "name": "valk-prettier",
-  "type": "module",
+  "name": "lagrapher",
   "private": true,
   "version": "0.0.1",
   "scripts": {
     "prettier": "prettier . -w",
-    "prettier-check": "prettier . --check"
+    "prettier-check": "prettier . --check",
+    "build": "wasm-pack build --target bundler --release --out-dir rspkg && webpack --config webpack.config.js",
+    "serve": "wasm-pack build --target bundler --release --out-dir rspkg && webpack serve --config webpack.config.js --open"
   },
   "devDependencies": {
-    "prettier": "^3.1.1"
+    "copy-webpack-plugin": "^11.0.0",
+    "prettier": "^3.1.1",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.2"
+  },
+  "dependencies": {
+    "@viz-js/viz": "^3.9.0",
+    "@randomairborne/rspkg": "file:./rspkg"
   }
 }

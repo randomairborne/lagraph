@@ -1,9 +1,9 @@
 /target
-thoughts.dot
-thoughts.txt
 
 /package-lock.json
 /node_modules
+/dist
+/rspkg
 
 .DS_Store
 /.idea/
