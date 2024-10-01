@@ -1,12 +1,21 @@
-import { dotfile } from "@randomairborne/rspkg";
-import { instance } from "@viz-js/viz";
+import {dotfile} from "@randomairborne/rspkg";
+import {instance} from "@viz-js/viz";
 
-const btn = document.getElementById("sb-x");
 const df = document.getElementById("ta-x");
+const svg = document.getElementById("svg-p");
 
-btn.addEventListener("click", () => {
-  const dot = dotfile(df.value);
-  instance().then((viz) => {
-    document.body.appendChild(viz.renderSVGElement(dot));
-  });
-});
+function render() {
+    const dot = dotfile(df.value);
+    instance().then((viz) => {
+        while (svg.hasChildNodes()) {
+            svg.removeChild(svg.lastChild);
+        }
+        const new_svg = viz.renderSVGElement(dot);
+        svg.appendChild(new_svg);
+    });
+}
+
+df.addEventListener("change", render);
+df.addEventListener("paste", render);
+df.addEventListener("keypress", render);
+render();

@@ -10,7 +10,9 @@ pub fn dotfile(input: String) -> String {
     let mut items: HashMap<String, HashSet<String>> = HashMap::new();
 
     for line in input.lines() {
-        let (name, value) = line.split_once(':').unwrap();
+        let Some((name, value)) = line.split_once(':') else {
+            continue;
+        };
         let name = name.trim().to_string();
         let value: HashSet<String> = value
             .split(',')
