@@ -16,7 +16,10 @@ jobs:
         with:
           target: wasm32-unknown-unknown
 
-      - name: Build
+      - name: install deps
+        run: npm install
+
+      - name: build site
         run: npm run build
 
       - name: Upload Artifact
